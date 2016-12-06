@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Объявление функции</title>
+    <style>
+        .pass {
+            color: green;
+        }
+        .fail {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Объявление функции</h2>
+    <h3>1.1 - объявление функции с помощью инструкции</h3>
+    <code>
+<pre>
+    function f (param) {
+        console.log(param)
+    }
+</pre>
+    </code>
+    <h3>1.2 - объявление функции с помощью выражения</h3>
+    <code>
+<pre>
+    var a = function f (param) {
+        console.log(param)
+    }
+</pre>
+    </code>
+    <h3>1.3 - объявление функции с помощью конструктора</h3>
+    <code>
+<pre>
+    <code>
+        var a = new Function ('param', 'console.log(param)');
+    </code>
+</pre>
+    </code>
+    <hr>
+    <h3>1.4 - Тесты</h3>
+    <code>
+<pre>
+    function f () {
+        console.log(f); // 1
+    }
+
+    var a = function b () {
+        console.log(b)  // 2
+    }
+
+    console.log(f) // 3
+    console.log(b) // 4
+</pre>
+    </code>
+    <h4>Для функции, объявленной с помощью инструкции ее имя доступно во всей области видимости</h4>
+    <h4>Для функции, объявленной с помощью выражения ее имя доступно в теле функции и не доступно вне функции</h4>
+    <ul id="res1"></ul>
+    <code>
+<pre>
+    function parent () {
+
+        child () // 1
+        child2() //  2
+
+        var child2 = function () {
+
+
+        }
+
+        function child () {
+
+        }
+
+        child2() // 3
+        child() // 4
+    }
+
+</pre>
+    </code>
+    <h4>Подъем функции, объявленой с помощью инструкции</h4>
+    <ul id="res2"></ul>
+
+
+    <script src="../test.js"></script>
+    <script src="createFunction.js"></script>
+</body>
+</html>
