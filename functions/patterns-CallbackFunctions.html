@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback Functions</title>
+    <style>
+        .pass {
+            color: green;
+        }
+        .fail {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<dl>
+    <dt>функция обратного вызова</dt>
+    <dd>функция передается в качестве параметра другой фкнкции, которая вызовет во время выполнения переданную функцию</dd>
+</dl>
+<code>
+    <pre>
+function a () {
+
+        return false;
+
+}
+function b (param) {
+    if(param && typeof param === 'function') {
+        param();
+    }
+}
+
+
+
+    </pre>
+</code>
+    <h3>Проверка, что переданный параметр является функцией</h3>
+<code>
+    <pre>
+function a () {
+     return false;
+}
+
+function b (param) {
+        // start
+    if(param && typeof param === 'function') {
+        param();
+    }
+        //end
+}
+
+
+b() // 1
+b(12) // 2
+b(a) // 3
+
+    </pre>
+</code>
+<ul id="test11">
+
+</ul>
+    <h3>Передача this в callback функцию</h3>
+<code>
+    <pre>
+var a = 10;
+var o = {
+        a: 12,
+        getA: function () {
+            return this.a;
+        }
+      }
+
+// 1 - с помощью bind
+
+var b = function (callback) {
+    if(param && typeof param === function) {
+        return callback();
+    }
+    return false;
+}
+b(o.getA);         // 1
+b(o.getA.bind(o)); // 2
+
+// передать второй рараметр, объект, относительно которого вызывать функцию
+
+var c = function (callback, obj) {
+    if(param && typeof param === 'function') {
+        if (obj) {
+            return callback.call(obj);
+        } else {
+            callback();
+        }
+    }
+    return false;
+}
+
+c(o.getA, o); // 3
+
+// другой вариант - передавать не метод, а его имя
+
+
+var d = function (callbackName, obj) {
+    if(typeof callbackName === 'string' && obj[callbackName] && typeof obj[callbackName] === 'function') {
+        return obj[callbackName].call(obj);
+    }
+    return false;
+}
+
+d(getA, o); // 4
+
+    </pre>
+</code>
+<ul id="test2">
+
+</ul>
+    <script src="../test.js"></script>
+    <script src="patterns-callbackFunctions.js"></script>
+</body>
+</html>
