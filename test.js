@@ -1,12 +1,29 @@
 /**
  * Created by askrypai on 12/6/16.
  */
-function assert(value, text, container){
-    var li = document.createElement('li');
-    li.className = value ? 'pass' : 'fail';
-    li.appendChild(document.createTextNode(text));
-    document.getElementById(container).appendChild(li);
+function createElement(elementName, elemContent) {
+    var el,
+        doc = window.document;
 
+    el = doc.createElement(elementName);
+    el.appendChild(doc.createTextNode(elemContent));
+
+    return el;
 }
 
+function addClassToElement(el, className) {
+    el.className = className
+    return el;
+}
 
+function assert(value, text, container){
+    document.getElementById(container).appendChild(addClassToElement(createElement('li', text),  value ? 'pass' : 'fail'));
+}
+
+function print(text, containerId, element) {
+    if (!element) {
+        element = 'div'
+    }
+
+    document.getElementById(containerId).appendChild(addClassToElement(createElement(element, text), 'info'));
+}

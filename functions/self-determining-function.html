@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Самоопределяющиеся функции</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <h3>Самоопределяющиеся функции (отложенное объявление функции)</h3>
+    <p>В теле функуии создается новая функция, которая присваивается старой функции</p>
+<code>
+    <pre>
+var a = function () {
+    // код, который надо выполнить только один раз
+    a = function () {
+        новая функция
+    }
+
+}
+    </pre>
+</code>
+    <div id="text1"></div>
+    <dl>
+        <dt>недостатки</dt>
+        <dd>
+            <p>Если до преопределения функции были присвоены какие-то свойства - они будут потеряны при переопределении</p>
+            <p>Если функция присвоена переменной или свойству объекта и использовалась под другим именем - то переопределение не произойдет, будет использоваться прежняя функция</p>
+        </dd>
+    </dl>
+    <code>
+        <pre>
+var scareMe = function () {
+
+    console.log('boo');
+
+    scareMe = function () {
+
+            console.log('Double boo');
+
+    }
+}
+scareMe.property = 'prop';
+
+var spooky = {
+    'boo': scareMe
+}
+
+var prank = scareMe;
+
+
+// 1 - вызов как функции
+
+prank(); //  выведет 'boo'
+prank(); // выведет 'boo'
+console.log(prank.property); // выведет 'propertу'
+
+// 2 - вызов как метода
+
+spooky.boo()     // выведет 'boo'
+spooky.boo()     // выведет 'boo'
+console.log(spooky.boo.property); // выведет 'propertу'
+
+
+// 3 - использование как переопределяющейся функции
+
+scareMe()      // выведет 'Double boo'
+scareMe()      // выведет 'Double boo'
+console.log(scareMe.property); // выведет 'undefined'
+        </pre>
+    </code>
+    <div id="text2">
+
+    </div>
+    <script src="../test.js"></script>
+    <script src="self-determining-functions.js"></script>
+</body>
+</html>

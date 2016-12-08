@@ -1,0 +1,9 @@
+.pass {
+    color: darkgreen;
+}
+.fail {
+    color: brown;
+}
+.info {
+    color: cornflowerblue;
+}
