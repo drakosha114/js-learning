@@ -8,8 +8,9 @@
 
         a = function () {
             print('этот код выплолняется при последующих вызовах', param);
-        }
-    }
+        };
+
+    };
 
     a();
     a();
@@ -20,21 +21,19 @@
 (function(param){
 
     var scareMe = function () {
-        return 'Boo';
 
         scareMe = function () {
-
             return 'Double Boo';
-        }
+        };
 
-    }
+        return 'Boo';
+    };
+
     scareMe.property = 'property';
-    console.log(scareMe)
-
 
     var spooky = {
         'boo': scareMe
-    }
+    };
 
     var prank = scareMe;
 
@@ -47,11 +46,11 @@
     print('==========', param, 'li');
     console.log(scareMe);
     assert(spooky.boo() === 'Boo', '2 - Переопределение не произошлою Выполняется прервоначальный вариант функции', param);
-    print(spooky.boo(), param, 'li')
+    print(spooky.boo(), param, 'li');
     assert(spooky.boo() === 'Double Boo', '2 - Второй вызов функции как метода объекта.Переопределение не произошлою Выполняется прервоначальный вариант функции', param);
-    print(spooky.boo(), param, 'li')
+    print(spooky.boo(), param, 'li');
     assert(spooky.boo.property === 'property', '2 - Присвоенное функции свойство доступно', param);
-    print(spooky.boo.property, param, 'li')
+    print(spooky.boo.property, param, 'li');
     print('==========', param, 'li');
     assert(scareMe() === 'Boo', '3 - Первоначальный вариант функции был утерян при вызове функции с другим именем', param);
     print(scareMe(),param, 'li');
@@ -60,4 +59,4 @@
     assert(scareMe.property === 'property', '3 - Присвоенное функции свойство не доступно после переопределения', param);
     print(scareMe.property, param, 'li');
 
-}('text2'))
+}('text2'));

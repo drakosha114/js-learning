@@ -12,7 +12,7 @@ function createElement(elementName, elemContent) {
 }
 
 function addClassToElement(el, className) {
-    el.className = className
+    el.className = className;
     return el;
 }
 
@@ -22,7 +22,7 @@ function assert(value, text, container){
 
 function print(text, containerId, element) {
     if (!element) {
-        element = 'div'
+        element = 'div';
     }
 
     document.getElementById(containerId).appendChild(addClassToElement(createElement(element, text), 'info'));
